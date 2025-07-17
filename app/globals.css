@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: white;
+  --foreground: black;
+}
+
+.dark {
+  --background: #1a1a1a;
+  --foreground: white;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Roboto', 'Noto Sans SC', 'Noto Sans TC', sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-neutral-200 dark:border-neutral-800;
+  }
+  body {
+    @apply bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    overflow-x: hidden;
+  }
+}
+
+/* Smooth scrolling and better mobile tap highlight */
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+  font-family: 'Roboto', 'Noto Sans SC', 'Noto Sans TC', sans-serif;
+}
+
+/* Better focus outline */
+:focus-visible {
+  @apply outline-2 outline-blue-500 dark:outline-blue-400 outline-offset-2;
+}
+
+/* Theme switcher styles */
+.theme-switcher {
+  @apply relative w-9 h-9 rounded-lg inline-flex items-center justify-center transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-800/50;
+}
+
+.sun-icon {
+  @apply opacity-100 rotate-0 transition-all duration-200;
+}
+
+.moon-icon {
+  @apply absolute opacity-0 -rotate-90 transition-all duration-200;
+}
+
+.dark .sun-icon {
+  @apply opacity-0 rotate-90;
+}
+
+.dark .moon-icon {
+  @apply opacity-100 rotate-0;
+}
+
+/* Gradient text animation */
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 8s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+

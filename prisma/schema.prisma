@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// 投稿数据
+model SchoolSurvey {
+  id               Int      @id @default(autoincrement())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  province         String?
+  city             String?
+  district         String?
+  schoolName       String?
+  grade            String?
+  schoolStartTime  String?
+  schoolEndTime    String?
+  weeklyStudyHours Int?
+  monthlyHolidays  Int?
+  suicideCases     String?
+  studentComments  String?
+  status           String   @default("pending")
+  reviewComment    String?
+  ip               String?
+  userAgent        String?
+  safetyKeyword    String? // 安全词
+  approvedBy       String? // 存储审核人员的用户名或ID
+}
+
+// 黑名单列表
+model Blacklist {
+  id        Int      @id @default(autoincrement())
+  ip        String
+  userAgent String?
+  reason    String? // 记录拉黑原因
+  createdAt DateTime @default(now())
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("user")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Submission {
+  id                 String    @id @default(uuid())
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  province           String?
+  city               String?
+  district           String?
+  schoolName         String?
+  grade              String?
+  isRemedial         Boolean? // true for "是", false for "否"
+  remedialStartDate  DateTime?
+  remedialEndDate    DateTime?
+  weeklyClassDays    Float?
+  monthlyHolidayDays Int?
+  consentForm        String? // Store the text description
+  feeRequired        Boolean? // true for "是", false for "否"
+  feeAmount          Float?
+  coolingMeasures    String? // Store the text description
+  schoolViolations   String[] // Array of strings for selected violations
+  otherViolations    String?
+  phq9Data           Json? // Array of integers for PHQ-9 scores
+  safetyWord         String?
+
+  status        String  @default("pending")
+  ip            String? // 存储用户提交时的IP地址
+  userAgent     String? // 存储用户提交时的User-Agent字符串
+  approvedBy    String? // 审核人姓名或ID
+  reviewComment String? // 审核评论
+
+  weeklyTotalHours Float? // 每周上课总时数
+}

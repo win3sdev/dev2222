@@ -1,0 +1,462 @@
+{
+  "home": {
+    "intro": {
+      "part1": "本项目由 ",
+      "part2": " 运营，灵感源自 996.ICU，致力于为被压榨的中国学生发声。",
+      "part3": "$Li社区团队"
+    },
+    "core": {
+      "title": "核心理念",
+      "part1": "希望建设一个 ",
+      "part2": "独一无二的社区",
+      "part3": "，在中国这样的极权环境中，",
+      "part4": "捍卫人权、新闻自由与言论自由",
+      "part5": "。 随着 $LI 社区的壮大，我们希望凝聚共识，共同推动这些核心价值的实现。"
+    },
+    "system": {
+      "title": "什么是 611 学制？",
+      "quote": "“611Study” 指的是“早6点上学，晚11点放学，生病 ICU”。这已成为中国中学的普遍现象。",
+      "text": "学生每周在校学习 ",
+      "highlight": "超过 102 小时",
+      "consequence": "，心理与身体健康遭受严重侵蚀。这一模式，",
+      "warning": "连监狱都不如",
+      "ending": "。"
+    },
+    "actions": {
+      "title": "我们能做什么？",
+      "list": [
+        "填写 ",
+        "超时学习学校登记问卷",
+        "，更新全国 ",
+        "耻辱名单",
+        "互助式向异地教育局、市长热线举报上榜学校",
+        "参与社区，提出新的议题与解决方案",
+        "下午6点钟放学回家 🕕 —— 这是应有的权利"
+      ]
+    },
+    "vision": {
+      "title": "原则与愿景",
+      "content": "611Study.ICU 是一场学生自下而上的呐喊，我们鼓励来自不同地区、不同领域的人士加入讨论。本社区提倡 ",
+      "highlight": "成熟、负责任、有建设性的发言",
+      "ending": "，共同探索解决之道。"
+    },
+    "inspiration": {
+      "title": "我们的灵感来源",
+      "thanks": "特别鸣谢 ",
+      "reference": "996.ICU",
+      "followup": " 的启发与开源项目框架。我们将其精神延续到学生维权领域，为中国孩子争取应有的成长环境。",
+      "note": "请自由发挥你的力量，",
+      "warning": "但无需盲目扩展翻译版本"
+    },
+    "cta": {
+      "title": "你的境遇，掷地有声",
+      "desc": "通过填写问卷、参与社区，我们共同为学生争取应有的权利。",
+      "submit": "填写问卷",
+      "display": "查看数据",
+      "contact": "加入我们"
+    },
+    "footer": {
+      "text": "版权所有"
+    }
+  },
+
+  "metaTitle": "611 Study ICU.",
+  "metaDescription": "611Study 是指“早6点上学，晚11点放学，生病 ICU”。这是中国现在初高中学校的普遍强制要求。无数的初高中生因此承受生理和心理健康的双重折磨。我们希望通过此项目，帮助中国学生们摆脱这种连监狱都不如的作息时间，拥有一个健康快乐的童年。",
+  "navigation": {
+    "submit": "内容提交",
+    "display": "内容展示",
+    "charts": "图表展示",
+    "map": "地理位置分布",
+    "contact": "联系我们",
+    "summerCamp": "暑假补课登记问卷",
+    "summerList":"暑期补课名单"
+  },
+  "theme": {
+    "light": "浅色",
+    "dark": "深色"
+  },
+  "language": {
+    "en": "English",
+    "zh-CN": "简体中文",
+    "zh-TW": "繁體中文"
+  },
+  "site": {
+    "title": "611Study ICU",
+    "description": "欢迎参与学校情况调查问卷"
+  },
+  "form": {
+    "title": "超时学习学校登记问卷",
+    "description": "请完整填写学校的相关情况信息，确保登记资料准确无误。",
+    "card": "我们高度重视您的隐私与数据安全。您提交的所有信息均将被严格保密，仅用于学术研究与数据分析，绝不会泄露给任何第三方。感谢您的信任与支持。",
+    "safaKeyword": {
+      "label": "安全词",
+      "description": "用于防止伪造",
+      "placeholder": "请输入安全词"
+    },
+    "province": {
+      "label": "省份",
+      "placeholder": "请选择省份",
+      "description": "所反映的学校所在省份"
+    },
+    "city": {
+      "label": "城市",
+      "placeholder": "请输入城市名称",
+      "description": "城市地址"
+    },
+    "district": {
+      "label": "区县",
+      "placeholder": "请输入区县名称",
+      "description": "区县地址"
+    },
+    "schoolName": {
+      "label": "学校名称",
+      "placeholder": "请输入学校名称",
+      "description": "学校名称"
+    },
+    "grade": {
+      "label": "年级",
+      "placeholder": "请输入您的年级",
+      "description": "您的年级",
+      "options": {
+        "grade1": "一年级",
+        "grade2": "二年级",
+        "grade3": "三年级",
+        "grade4": "四年级",
+        "grade5": "五年级",
+        "grade6": "六年级",
+        "grade7": "初一",
+        "grade8": "初二",
+        "grade9": "初三",
+        "grade10": "高一",
+        "grade11": "高二",
+        "grade12": "高三"
+      }
+    },
+    "schoolStartTime": {
+      "label": "上学时间",
+      "description": "日常上学时间，点击右侧时钟按钮可快速填写（AM 表示上午，PM 表示下午）。"
+    },
+    "schoolEndTime": {
+      "label": "放学时间",
+      "description": "日常放学时间(含晚自习)，点击右侧时钟按钮可快速填写(AM-上午/PM-下午)"
+    },
+    "weeklyStudyHours": {
+      "label": "每周在校学习小时数",
+      "placeholder": "请输入每周学习小时数",
+      "description": "请注意是每周！不是每天"
+    },
+    "monthlyHolidays": {
+      "label": "每月假期天数",
+      "placeholder": "请输入每月假期天数",
+      "description": "每月放假的天数"
+    },
+    "suicideCases": {
+      "label": "2024年学生自杀数",
+      "placeholder": "请输入数字",
+      "description": "您的学校是否有学生心理压力过大甚至选择轻生的情况"
+    },
+    "studentComments": {
+      "label": "学生评论",
+      "placeholder": "请输入您的评论",
+      "description": "请分享您的真实看法"
+    },
+    "submit": "提交调查",
+    "submitting": "提交中...",
+    "success": "提交成功！",
+    "error": "提交失败，请重试。"
+  },
+  "display": {
+    "title": "学校信息调查表",
+    "card": "所有内容均来自用户投稿，并经人工审核后发布。如您发现信息有误，欢迎联系我们进行更正或删除。",
+    "viewDetails": "查看详情",
+    "noData": "暂无数据",
+    "province": "省份",
+    "city": "城市",
+    "district": "区县",
+    "schoolName": "学校名称",
+    "grade": "年级",
+    "studentComments": "学生评论",
+    "weeklyStudyHours": "每周在校学习小时数",
+    "monthlyHolidays": "每月假期天数",
+    "suicideCases": "2024年学生自杀数",
+    "createdAt": "提交时间",
+    "schoolStartTime": "上学时间",
+    "schoolEndTime": "放学时间",
+    "location": "地理位置",
+    "schoolSchedule": "作息时间",
+    "statistics": "统计数据",
+    "winterVacationDays": "寒假放假天数",
+    "winterTuitionTotal": "寒假补课收费总价",
+    "download": "下载全部数据",
+    "pagination": {
+      "prev": "上一页",
+      "next": "下一页",
+      "page": "第 {page} 页",
+      "of": "共 {total} 页",
+      "showing": "显示 {start}-{end} 条，共 {total} 条",
+      "num": "页码",
+      "jump": "跳转"
+    },
+    "filter": {
+      "placeholder": "输入筛选条件",
+      "min": "最小值",
+      "max": "最大值",
+      "apply": "应用筛选",
+      "clear": "清除筛选"
+    }
+  },
+  "map": {
+    "title": "内容正在建设中",
+    "description": "我们正在努力完善此页面内容，敬请期待。",
+    "backHome": "返回首页"
+  },
+  "charts": {
+    "title": "数据统计图表",
+    "gradeDistribution": "年级分布",
+    "weeklyStudyHoursDistribution": "每周学习小时数分布",
+    "schoolStartTime": "上学时间分布",
+    "schoolEndTime": "放学时间分布（含晚自习）",
+    "provinceDataDistribution": "各省份数据分布"
+  },
+  "contact": {
+    "title": "加入 $Li 社区",
+    "join": {
+      "title": "加入 $Li 社区",
+      "content": "我们诚挚邀请您成为 <strong>$Li 社区</strong> 的一员。 这是一个致力于推动中国民主、言论自由和新闻自由的团体。加入我们的 <a>Telegram 群组</a>，与志同道合的伙伴交流，分享观点，共同推动积极变革。"
+    },
+    "committee": {
+      "title": "加入筹备委员会",
+      "intro": "您是否拥有创新想法或专业技能？我们正在组建筹备委员会，旨在引领 <strong>$Li 社区</strong> 向 <strong>DDAO（民主化去中心化自治组织）</strong> 方向发展。",
+      "roles": {
+        "visionary": "<strong>独到见解的愿景者：</strong> 拥有与我们价值观契合的 DAO 或创新项目理念。",
+        "tech": "<strong>技术专家：</strong> 前端/后端开发经验；区块链开发，尤其是 Rust 和 Solana 生态。",
+        "design": "<strong>创意设计师：</strong> 精通 UI/UX、平面设计或其他创意领域。",
+        "rights": "<strong>民主与人权倡导者：</strong> 在民主、人权和言论自由领域具备经验。"
+      }
+    },
+    "why": {
+      "title": "为什么加入？",
+      "mission": "与志同道合且充满热情的伙伴携手共进。",
+      "freedom": "参与推动自由、人权及民主实验的伟大事业。",
+      "future": "在塑造 $Li 社区未来蓝图中发挥重要作用。"
+    },
+    "how": {
+      "title": "如何申请",
+      "intro": "您可以通过以下方式与我们取得联系：",
+      "telegram": "点击加入我们的 Telegram 群组"
+    },
+    "foundation": {
+      "title": "雪花基金会",
+      "name": "李老师不是你老师"
+    },
+    "jiang": {
+      "title": "611 Study ICU项目负责人-蒋不",
+      "bio": "蒋不 — 反賊，藝術家，情境主義者。生活在巴黎。拍過紀錄片，當過選片人，開過出租車，進過派出所。"
+    },
+    "tech": {
+      "title": "技术支持 - xROx"
+    }
+  },
+  "summer-camp": {
+    "title": "暑期补课学校问卷调查",
+    "description": "请完整填写暑期补课学校的相关情况信息，确保登记资料准确无误。",
+    "card": "我们高度重视您的隐私与数据安全。您提交的所有信息均将被严格保密，仅用于学术研究与数据分析，绝不会泄露给任何第三方。感谢您的信任与支持。",
+    "address": {
+      "label": "学校位置信息",
+      "desc": "地理位置信息"
+    },
+    "province": {
+      "label": "省份",
+      "desc": "请选择您学校所在的省份",
+      "placeholder": "请输入"
+    },
+    "city": {
+      "label": "城市",
+      "desc": "请选择您学校所在的城市",
+      "placeholder": "请输入"
+    },
+    "district": {
+      "label": "区县",
+      "desc": "请选择您学校所在的区县",
+      "placeholder": "请输入"
+    },
+    "schoolName": {
+      "label": "学校名称",
+      "desc": "请输入您的学校完整名称",
+      "placeholder": "请输入学校名称"
+    },
+    "grade": {
+      "label": "年级",
+      "desc": "请选择您的年级",
+      "placeholder": "请选择",
+      "options": {
+        "grade1": "初一",
+        "grade2": "初二",
+        "grade3": "初三",
+        "grade4": "高一",
+        "grade5": "高二",
+        "grade6": "高三"
+      }
+    },
+    "remedial": {
+      "label": "暑假补课情况",
+      "isRemedial": {
+        "label": "您所在学校暑假是否在组织补课？",
+        "yes": "是",
+        "no": "否"
+      },
+      "startDate": {
+        "label": "补习开始日期",
+        "placeholder": "选择补习开始的日期"
+      },
+      "endDate": {
+        "label": "补习结束日期",
+        "placeholder": "选择补习结束的日期"
+      },
+      "weeklyClassDays": {
+        "label": "每周上课天数"
+      },
+
+      "monthlyHolidayDays": {
+        "label": "每月放假天数"
+      },
+      "weeklyTotalHours": {
+        "label": "每周上课总课时数（请估算）"
+      },
+      "consentForm": {
+        "label": "是否签署‘自愿补课’同意书？",
+        "option1": "未征求意见，学校默认全员必须参加",
+        "option2": "有签署，完全自愿（未签也不会被为难）",
+        "option3": "被迫签署，不签会被威胁/施压（如影响成绩、处分等）"
+      },
+      "feeRequired": {
+        "label": "是否额外收费？",
+        "yes": "是",
+        "no": "否"
+      },
+      "feeAmount": {
+        "label": "请输入金额（元）"
+      },
+      "coolingMeasures": {
+        "label": "防暑措施是否到位？",
+        "option1": "提供空调等降温设施，教室温度适宜",
+        "option2": "提供部分降温设备，但效果不足（如电扇弱、空调不开等）",
+        "option3": "未提供任何有效防暑措施，教室闷热酷暑难忍"
+      }
+    },
+    "redirectMessage": "请跳转至第13题‘学校违纪与爆料’填写。",
+    "violations": {
+      "title": "学校违纪与爆料",
+      "label": "学校是否存在以下问题？（可多选）",
+      "option1": "校长/管理层违纪（贪污、违规收费等）",
+      "option2": "教师体罚或变相体罚学生",
+      "option3": "师生关系不当（骚扰、操纵成绩等）",
+      "option4": "校园暴力被包庇或举报者被打压",
+      "option5": "升学率/成绩造假",
+      "option6": "详细问题或其他",
+      "otherLabel": "如有其他爆料，请详细描述（如事件、时间、方式等）：",
+      "placeholder": "请详细描述您想要举报或爆料的问题，例如时间、地点、参与人员等。",
+      "desc":"如果以上选项未能涵盖您想报告的问题，请在此处详细说明。"
+    },
+    "phq9": {
+      "title": "心理健康自评",
+      "qu":"PHQ-9 量表",
+      "label": "以下为心理健康状况自评内容，旨在了解在补课压力下的心理状态，仅用于统计分析，请如实填写。在过去两周内，您被以下问题困扰的频率是？（单选每题）",
+      "question1": "对任何事情都提不起兴趣",
+      "question2": "情绪低落、沮丧或绝望",
+      "question3": "入睡困难、易醒或睡得过多",
+      "question4": "感到疲倦或没有精力",
+      "question5": "食欲不振或吃得过多",
+      "question6": "感觉自己很糟糕、失败，或让自己或家人感到失望",
+      "question7": "难以集中注意力（如看电视或上课时）",
+      "question8": "动作或说话变慢，或因烦躁而坐立不安",
+      "question9": "有不如死掉或用某种方式伤害自己的念头",
+      "scoreLabel0": "完全没有 (0)",
+      "scoreLabel1": "有几天 (1)",
+      "scoreLabel2": "一半以上时间 (2)",
+      "scoreLabel3": "几乎每天 (3)"
+    },
+    "safeWork": {
+      "title": "安全词（若您之后想要撤回本次提交，请记住它）:",
+      "desc":"请设置一个只有您知道的安全词，用于未来可能需要修改或撤回提交的情况。",
+      "placeholder": "请输入一个容易记住但不容易被猜到的词"
+    },
+    "submit": "提交问卷"
+  },
+  "submissions": {
+    "title": "暑期补课学校名单",
+    "search": {
+      "placeholder": "搜索省份、城市、学校或任何关键词...",
+      "button": "搜索",
+      "loading": "加载中...",
+      "loadingText": "请稍等，正在加载结果。",
+      "noResults": "未找到相关结果。",
+      "highSearch": "高级搜索"
+    },
+    "advancedSearch": {
+      "title": "高级搜索",
+      "province": "省份",
+      "city": "城市",
+      "district": "区县",
+      "schoolName": "学校名称",
+      "grade": "年级",
+      "consentForm": "知情同意书",
+      "coolingMeasures": "防暑措施",
+      "otherViolations": "其他违规",
+      "safetyWord": "安全词",
+      "schoolViolations": "学校违规违纪事件",
+      "phq9Data": "心理健康评估",
+      "isRemedial": {
+        "all": "是否补习 (全部)",
+        "true": "是否补习 (是)",
+        "false": "是否补习 (否)"
+      },
+      "feeRequired": {
+        "all": "是否收费 (全部)",
+        "true": "是否收费 (是)",
+        "false": "是否收费 (否)"
+      },
+      "remedialStartDate": "补习开始日期",
+      "remedialEndDate": "补习结束日期",
+      "weeklyClassDays": "每周天数",
+      "weeklyTotalHours": "每周总课时数",
+      "monthFunDays": "每月假天",
+      "feeAmount": "费用金额",
+      "min": "最小",
+      "max": "最大"
+    },
+    "noSubmissions": "目前还没有提交的问卷数据。",
+    "noMatchingResults": "没有找到匹配您搜索条件的提交数据。",
+    "loading": "加载中...",
+    "loadingError": "数据加载失败，请稍后再试。",
+    "submittedAt": "提交于",
+    "pending": "待处理",
+    "approved": "已审核",
+    "province": "省份",
+    "city": "城市",
+    "district": "区县",
+    "schoolName": "学校名称",
+    "grade": "年级",
+    "isRemedial": "是否补习",
+    "yes": "是",
+    "no": "否",
+    "startDate": "开始日期",
+    "endDate": "结束日期",
+    "weeklyClassDays": "每周天数",
+    "monthlyHolidayDays": "月假天数",
+    "weeklyTotalHours": "每周总课时数",
+    "feeRequired": "是否收费",
+    "feeAmount": "费用金额",
+    "consentForm": "知情同意书",
+    "schoolViolations": "学校违纪",
+    "otherViolations": "其他事件",
+    "notAvailable": "N/A",
+    "previousPage": "上一页",
+    "nextPage": "下一页",
+    "page": "第",
+    "of": "页",
+    "total": "共",
+    "items": "条",
+    "days": "天"
+  }
+}
