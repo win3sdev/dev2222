@@ -16,7 +16,7 @@ const parseAndValidateDate = (
     console.warn(
       `[API - Date Validation] Invalid or out-of-range date received: ${dateString}`
     );
-    return null; // 返回 null，让数据库存储 NULL
+    return null;
   }
   return dateObj;
 };
@@ -35,7 +35,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
-    // 创建提交数据的处理
     try {
       const {
         province,
@@ -48,18 +47,17 @@ export default async function handler(
         remedialEndDate,
         weeklyClassDays,
         monthlyHolidayDays,
-        weeklyTotalHours, // // <-- 新增：接收每周上课总课时数
+        weeklyTotalHours,
         consentForm,
         feeRequired,
         feeAmount,
         coolingMeasures,
         schoolViolations,
         otherViolations,
-        phq9, // array
+        phq9,
         safetyWord,
       } = req.body;
 
-      // Convert '是'/'否' strings to booleans
       const isRemedialBoolean = isRemedial === "是";
       const feeRequiredBoolean = feeRequired === "是";
 
@@ -67,9 +65,19 @@ export default async function handler(
         req.headers["x-forwarded-for"]?.toString() || req.socket.remoteAddress;
       const userAgent = req.headers["user-agent"]?.toString() || null;
 
-      // 解析和校验日期字段
       const parsedRemedialStartDate = parseAndValidateDate(remedialStartDate);
       const parsedRemedialEndDate = parseAndValidateDate(remedialEndDate);
+
+      // 结束日期不能早于开始日期
+      if (
+        parsedRemedialStartDate &&
+        parsedRemedialEndDate &&
+        parsedRemedialEndDate < parsedRemedialStartDate
+      ) {
+        return res.status(400).json({
+          message: "结束日期不能早于开始日期",
+        });
+      }
 
       const submission = await prisma.submission.create({
         data: {
@@ -87,16 +95,16 @@ export default async function handler(
             : null,
           weeklyTotalHours: weeklyTotalHours
             ? parseFloat(weeklyTotalHours)
-            : null, // <-- 新增：保存到数据库
+            : null,
           consentForm: consentForm || null,
           feeRequired: feeRequiredBoolean,
           feeAmount: feeAmount ? parseFloat(feeAmount) : null,
           coolingMeasures: coolingMeasures || null,
-          schoolViolations: schoolViolations || [], // 确保是数组，即使为空
+          schoolViolations: schoolViolations || [],
           otherViolations: otherViolations || null,
           phq9Data: phq9 || [],
           safetyWord: safetyWord || null,
-          status: "pending", // 默认状态为 "pending"
+          status: "pending",
           ip: userIp,
           userAgent: userAgent,
           approvedBy: null,

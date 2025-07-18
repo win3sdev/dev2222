@@ -27,7 +27,7 @@ const PHQ9_SCORE_LABELS = {
 };
 
 const isValidDate = (dateString) => {
-  if (!dateString) return true; // 允许为空字符串，表示未填写
+  if (!dateString) return true;
 
   const dateObj = new Date(dateString);
   const isValid =
@@ -58,12 +58,12 @@ export default function SummerCampForm() {
       weeklyTotalHours: "",
       monthlyHolidayDays: "",
       consentForm: "",
-      feeRequired: "否",
+      feeRequired: "",
       feeAmount: "",
       coolingMeasures: "",
       schoolViolations: [] as string[],
       otherViolations: "",
-      phq9: initialPhq9, // 使用正确初始化的 phq9 数组
+      phq9: initialPhq9,
       safetyWord: "",
       remedialStartDateError: "",
       remedialEndDateError: "",
@@ -71,7 +71,6 @@ export default function SummerCampForm() {
   };
 
   const [formData, setFormData] = useState(initialFormData);
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const handlePhq9Change = (index, value) => {
     setFormData((prevData) => {
@@ -103,6 +102,7 @@ export default function SummerCampForm() {
         ...prevData,
         [name]: value,
       }));
+
       if (name === "isRemedial" && value === "否") {
         setFormData((prevData) => ({
           ...prevData,
@@ -142,20 +142,31 @@ export default function SummerCampForm() {
           [name]: value,
         };
 
-        // 针对日期字段进行前端验证
         if (name === "remedialStartDate") {
           if (!isValidDate(value)) {
             newData.remedialStartDateError =
               "日期格式无效或超出范围 (1900-2100年)";
           } else {
-            newData.remedialStartDateError = ""; // 清除错误
+            newData.remedialStartDateError = "";
           }
         } else if (name === "remedialEndDate") {
           if (!isValidDate(value)) {
             newData.remedialEndDateError =
               "日期格式无效或超出范围 (1900-2100年)";
           } else {
-            newData.remedialEndDateError = ""; // 清除错误
+            newData.remedialEndDateError = "";
+          }
+        }
+
+        // 结束日期不能早于开始日期
+        if (newData.remedialStartDate && newData.remedialEndDate) {
+          const startDate = new Date(newData.remedialStartDate);
+          const endDate = new Date(newData.remedialEndDate);
+
+          if (endDate < startDate) {
+            newData.remedialEndDateError = "结束日期不能早于开始日期";
+          } else {
+            newData.remedialEndDateError = ""; // 清除错误信息
           }
         }
 
@@ -164,8 +175,8 @@ export default function SummerCampForm() {
             ...newData,
             remedialStartDate: "",
             remedialEndDate: "",
-            remedialStartDateError: "", // 同时清除错误
-            remedialEndDateError: "", // 同时清除错误
+            remedialStartDateError: "",
+            remedialEndDateError: "",
           };
         }
 
@@ -176,11 +187,22 @@ export default function SummerCampForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // 提交前进行前端验证
+    if (formData.isRemedial === "") {
+      toast.error("请选择是否需要补习！", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
+
     const isStartDateValid = isValidDate(formData.remedialStartDate);
     const isEndDateValid = isValidDate(formData.remedialEndDate);
-
-    // console.log("Submitting Form Data:", formData);
 
     if (!isStartDateValid || !isEndDateValid) {
       setFormData((prevData) => ({
@@ -192,18 +214,18 @@ export default function SummerCampForm() {
           ? ""
           : "日期格式无效或超出范围 (1900-2100年)",
       }));
-      // alert("请检查并修正日期输入。");
+
       toast.error("请检查并修正日期输入。", {
-        position: "top-center", // 通知显示位置，例如：top-right, top-center, bottom-left
-        autoClose: 3000, // 3秒后自动关闭
+        position: "top-center",
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light", // 或 "dark"
+        theme: "light",
       });
-      return; // 阻止表单提交
+      return;
     }
 
     try {
@@ -216,27 +238,61 @@ export default function SummerCampForm() {
       });
 
       if (response.ok) {
-        const result = await response.json();
-        // 提交成功后，调用 toast.success() 显示通知
+        // const result = await response.json();
         toast.success("提交成功！您的问卷已成功提交，感谢您的参与。", {
-          position: "top-center", // 通知显示位置，例如：top-right, top-center, bottom-left
-          autoClose: 3000, // 3秒后自动关闭
+          position: "top-center",
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "light", // 或 "dark"
+          theme: "light",
         });
         setFormData(initialFormData());
       } else {
         const errorData = await response.json();
-        alert(`提交失败: ${errorData.message}`);
-        console.error("Submission failed:", errorData);
+        toast.error(errorData.message, {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          style: {
+            backgroundColor: "#ff4444",
+            color: "#fff",
+            fontSize: "16px",
+            fontWeight: "600",
+            borderRadius: "8px",
+            padding: "10px 20px",
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+          },
+        });
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert("提交问卷时发生错误，请稍后再试。");
+      toast.error("提交问卷时发生错误，请稍后再试。", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        style: {
+          backgroundColor: "#ff4444",
+          color: "#fff",
+          fontSize: "16px",
+          fontWeight: "600",
+          borderRadius: "8px",
+          padding: "10px 20px",
+          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+        },
+      });
     }
   };
 
@@ -274,7 +330,6 @@ export default function SummerCampForm() {
 
           <div className="space-y-6">
             {" "}
-            {/* 使用 space-y-6 控制每个部分的垂直间距 */}
             {/* 地区选择（省/市/区县） - 独占一行 */}
             <div className="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-700">
               <h3 className="text-lg font-medium mb-4 flex items-center text-neutral-900 dark:text-white">
@@ -521,7 +576,6 @@ export default function SummerCampForm() {
 
           <div className="space-y-6">
             {" "}
-            {/* Controls vertical spacing between each question's card */}
             {/* 6. 是否有暑假补课 */}
             <div className="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-700">
               <label className="block text-lg font-medium mb-3 flex items-center text-neutral-900 dark:text-white">
@@ -542,8 +596,6 @@ export default function SummerCampForm() {
                 6. {t("remedial.isRemedial.label")}
               </label>
               <div className="flex flex-col sm:flex-row sm:space-x-6 space-y-3 sm:space-y-0">
-                {" "}
-                {/* Radio buttons: column on small, row on medium+ */}
                 <label className="inline-flex items-center text-neutral-800 dark:text-neutral-200">
                   <input
                     type="radio"
@@ -571,12 +623,11 @@ export default function SummerCampForm() {
             {formData.isRemedial === "是" && (
               <div className="space-y-6">
                 {" "}
-                {/* Inner space for conditional fields */}
                 {/* 7. 补习开始日期 */}
                 <div className="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-700">
                   <label
                     htmlFor="remedialStartDate"
-                    className="block text-lg font-medium mb-1 flex items-center text-neutral-900 dark:text-white"
+                    className=" text-lg font-medium mb-1 flex items-center text-neutral-900 dark:text-white"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -616,7 +667,7 @@ export default function SummerCampForm() {
                 <div className="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-700">
                   <label
                     htmlFor="remedialEndDate"
-                    className="block text-lg font-medium mb-1 flex items-center text-neutral-900 dark:text-white"
+                    className=" text-lg font-medium mb-1 flex items-center text-neutral-900 dark:text-white"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -654,7 +705,7 @@ export default function SummerCampForm() {
                 </div>
                 {/* 9. 每周上课天数 */}
                 <div className="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-700">
-                  <label className="block text-lg font-medium mb-1 flex items-center text-neutral-900 dark:text-white">
+                  <label className="text-lg font-medium mb-1 flex items-center text-neutral-900 dark:text-white">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -672,7 +723,7 @@ export default function SummerCampForm() {
                     9. {t("remedial.weeklyClassDays.label")}
                   </label>
                   <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">
-                    请估算每周上课天数
+                    {t("remedial.weeklyClassDays.desc")}
                   </p>
                   <input
                     type="number"
@@ -682,11 +733,12 @@ export default function SummerCampForm() {
                     onChange={handleInputChange}
                     className="w-full sm:w-40 px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 text-neutral-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     placeholder="例如: 3.5"
+                    min="0"
                   />
                 </div>
                 {/* 10. 每周上课总课时数 */}
                 <div className="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-700">
-                  <label className="block text-lg font-medium mb-1 flex items-center text-neutral-900 dark:text-white">
+                  <label className="text-lg font-medium mb-1 flex items-center text-neutral-900 dark:text-white">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -701,10 +753,10 @@ export default function SummerCampForm() {
                         d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
                       />
                     </svg>
-                    10. 每周上课总课时数（请估算）
+                    10. {t("remedial.weeklyTotalHours.label")}
                   </label>
                   <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">
-                    请估算每周上课的总课时数
+                    {t("remedial.weeklyTotalHours.desc")}
                   </p>
                   <input
                     type="number"
@@ -714,11 +766,12 @@ export default function SummerCampForm() {
                     onChange={handleInputChange}
                     className="w-full sm:w-40 px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 text-neutral-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     placeholder="例如: 15"
+                    min="0"
                   />
                 </div>
                 {/* 11. 每月休息天数 */}
                 <div className="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-700">
-                  <label className="block text-lg font-medium mb-1 flex items-center text-neutral-900 dark:text-white">
+                  <label className="text-lg font-medium mb-1 flex items-center text-neutral-900 dark:text-white">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -736,7 +789,7 @@ export default function SummerCampForm() {
                     11. {t("remedial.monthlyHolidayDays.label")}
                   </label>
                   <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">
-                    请估算每月休息天数
+                    {t("remedial.monthlyHolidayDays.desc")}
                   </p>
                   <input
                     type="number"
@@ -745,6 +798,7 @@ export default function SummerCampForm() {
                     onChange={handleInputChange}
                     className="w-full sm:w-40 px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 text-neutral-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     placeholder="例如: 4"
+                    min="0"
                   />
                 </div>
                 {/* 12. 是否签订了相关补课协议/承诺书 */}
@@ -813,7 +867,7 @@ export default function SummerCampForm() {
                 </div>
                 {/* 13. 是否收取费用 */}
                 <div className="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-700">
-                  <label className="block text-lg font-medium mb-3 flex items-center text-neutral-900 dark:text-white">
+                  <label className="text-lg font-medium mb-3 flex items-center text-neutral-900 dark:text-white">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -858,7 +912,7 @@ export default function SummerCampForm() {
                   {formData.feeRequired === "是" && (
                     <div className="mt-4">
                       <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-2">
-                        请输入费用金额：
+                        {t("remedial.feeRequired.desc")}
                       </p>
                       <input
                         type="number"
@@ -867,13 +921,14 @@ export default function SummerCampForm() {
                         value={formData.feeAmount}
                         onChange={handleInputChange}
                         className="w-full sm:w-40 px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 text-neutral-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                        min="0"
                       />
                     </div>
                   )}
                 </div>
                 {/* 14. 暑假补课是否存在降温措施 */}
                 <div className="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-700">
-                  <label className="block text-lg font-medium mb-3 flex items-center text-neutral-900 dark:text-white">
+                  <label className="text-lg font-medium mb-3 flex items-center text-neutral-900 dark:text-white">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -1008,11 +1063,10 @@ export default function SummerCampForm() {
                 13. {t("violations.label")}
               </label>
               <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-4">
-                请选择您了解的学校存在的违规行为（可多选）:
+                {t("violations.check")}:
               </p>
               <div className="space-y-3 text-neutral-800 dark:text-neutral-200">
                 {" "}
-                {/* Added space-y-3 for checkboxes */}
                 {[
                   t("violations.option1"),
                   t("violations.option2"),
@@ -1090,10 +1144,9 @@ export default function SummerCampForm() {
           </h2>
 
           <div className="space-y-6">
-            {" "}
             {/* 15. PHQ-9 */}
             <div className="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-700">
-              <label className="block text-lg font-medium mb-4 flex items-center text-neutral-900 dark:text-white">
+              <label className="text-lg font-medium mb-4 flex items-center text-neutral-900 dark:text-white">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -1114,7 +1167,60 @@ export default function SummerCampForm() {
                 {t("phq9.label")}
               </p>
 
-              <div className="overflow-x-auto rounded-lg border border-neutral-200 dark:border-neutral-700 shadow-sm">
+              <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-4">
+                {t("phq9.label1")}
+                <strong className="font-bold text-red-500 text-xl bg-yellow-200 p-1 rounded">
+                  {t("phq9.foues")}
+                </strong>
+                {t("phq9.label2")}
+              </p>
+
+              {/* Mobile-first: PHQ-9 questions as cards */}
+              <div className="space-y-4">
+                {" "}
+                {/* Vertical spacing between question cards */}
+                {PHQ9_QUESTIONS.map((item, index) => (
+                  <div
+                    key={index}
+                    className="p-4 border rounded-lg bg-gray-50 dark:bg-neutral-700 dark:border-neutral-600"
+                  >
+                    <p className="font-medium text-neutral-900 dark:text-white mb-3">
+                      {index + 1}. {t(`phq9.question${index + 1}`)}
+                    </p>
+                    <div className="flex flex-col sm:flex-row sm:justify-between space-y-2 sm:space-y-0 sm:space-x-2">
+                      {" "}
+                      {/* Options layout */}
+                      {[0, 1, 2, 3].map((val) => (
+                        <label
+                          key={val}
+                          className="flex items-center space-x-2 cursor-pointer p-2 rounded-md hover:bg-gray-100 dark:hover:bg-neutral-600"
+                        >
+                          <input
+                            type="radio"
+                            name={`phq9-${index}`}
+                            value={val}
+                            checked={
+                              formData.phq9[index].score ===
+                              PHQ9_SCORE_LABELS[val]
+                            }
+                            onChange={(e) =>
+                              handlePhq9Change(index, e.target.value)
+                            }
+                            className="form-radio h-4 w-4 text-blue-600 border-neutral-300 dark:border-neutral-700 focus:ring-blue-500 dark:text-blue-400 dark:focus:ring-blue-500"
+                          />
+                          <span className="text-neutral-700 dark:text-neutral-200 text-sm">
+                            {t(`phq9.scoreLabel${val}`)}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Original table for larger screens (Optional - can be removed if card approach is universal) */}
+              {/* You can use responsive classes here to show/hide based on screen size, e.g., `hidden md:block` */}
+              {/* <div className="hidden md:block overflow-x-auto rounded-lg border border-neutral-200 dark:border-neutral-700 shadow-sm mt-6">
                 <table className="min-w-full divide-y divide-neutral-200 dark:divide-neutral-700 text-sm text-left dark:text-white">
                   <thead className="bg-neutral-50 dark:bg-neutral-700">
                     <tr>
@@ -1165,8 +1271,9 @@ export default function SummerCampForm() {
                     ))}
                   </tbody>
                 </table>
-              </div>
+              </div> */}
             </div>
+
             {/* 16. 安全词 */}
             <div className="bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-700">
               <label className=" text-lg font-medium mb-3 flex items-center text-neutral-900 dark:text-white">

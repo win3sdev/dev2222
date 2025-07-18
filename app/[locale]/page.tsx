@@ -63,7 +63,7 @@ export default function Home() {
               <FaArrowRight className="ml-1 text-sm" />
             </Link> */}
 
-              <Link
+            <Link
               href={`/${locale}/summer-camp`}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-cyan-600 to-blue-500 text-white font-semibold shadow-md hover:brightness-110 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-cyan-300 focus:ring-offset-2 dark:focus:ring-cyan-500 dark:focus:ring-offset-gray-900 transition-all dark:from-cyan-400 dark:to-blue-400"
             >
@@ -80,7 +80,6 @@ export default function Home() {
               {t("home.cta.display")}
               <FaArrowRight className="ml-1 text-sm" />
             </Link>
-            
           </div>
 
           <div className="pt-6 sm:pt-8 w-full max-w-sm">

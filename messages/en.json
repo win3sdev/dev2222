@@ -69,7 +69,7 @@
     "map": "Geographical distribution",
     "contact": "Contact Us",
     "summerCamp": "Summer Camp Registration",
-    "summerList":"Summer course list"
+    "summerList": "Summer course list"
   },
   "theme": {
     "light": "Light",
@@ -314,13 +314,16 @@
         "placeholder": "Select the end date of the classes"
       },
       "weeklyClassDays": {
-        "label": "Number of Class Days Per Week"
+        "label": "Number of Class Days Per Week",
+        "desc": "Please estimate the number of days per week for classes (fill in 0.5 for half-day classes)"
       },
       "monthlyHolidayDays": {
-        "label": "Number of Days Off Per Month"
+        "label": "Number of Days Off Per Month",
+        "desc": "Please estimate the number of rest days per month (fill in 0.5 for half a day)"
       },
       "weeklyTotalHours": {
-        "label": "Total Class Hours Per Week (Please Estimate)"
+        "label": "Total Class Hours Per Week (Please Estimate)",
+        "desc": "Please estimate the total number of hours of class time per week"
       },
       "consentForm": {
         "label": "Did you sign the 'Voluntary Remedial Class' Consent Form?",
@@ -330,6 +333,7 @@
       },
       "feeRequired": {
         "label": "Is there an additional fee?",
+        "desc": "Please enter fee amount:",
         "yes": "Yes",
         "no": "No"
       },
@@ -347,6 +351,7 @@
     "violations": {
       "title": "School Violations and Reports",
       "label": "Does the school have any of the following issues? (Multiple selections allowed)",
+      "check": "Please select the violations you know about in the school (multiple selections are allowed)",
       "option1": "Principal/management violations (embezzlement, illegal fees, etc.)",
       "option2": "Teacher corporal punishment or disguised corporal punishment of students",
       "option3": "Improper teacher-student relationships (harassment, manipulating grades, etc.)",
@@ -360,7 +365,10 @@
     "phq9": {
       "title": "Mental Health Self-Assessment",
       "qu": "PHQ-9 Scale",
-      "label": "The following is a mental health self-assessment, aimed at understanding your psychological state under the pressure of remedial classes, for statistical analysis only. Please answer truthfully. In the past two weeks, how often have you been bothered by the following problems? (Choose one for each question)",
+      "label": "The following is a self-assessment of mental health status, which aims to understand the mental state under the pressure of tutoring. It is only used for statistical analysis, so please fill it out truthfully.",
+      "label1": "exist",
+      "foues": "Last two weeks",
+      "label2": "How often are you troubled by the following problems? (Single-choice answer for each question)",
       "question1": "Little interest or pleasure in doing things",
       "question2": "Feeling down, depressed, or hopeless",
       "question3": "Trouble falling asleep, waking up often, or sleeping too much",
